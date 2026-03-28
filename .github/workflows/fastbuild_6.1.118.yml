@@ -538,7 +538,6 @@ jobs:
               sed -i "\$s|echo \"\\\$res\"|echo \"-${{ env.KERNEL_NAME }}\"|" "$f"
             done
           fi
-          
       - name: 注入DroidSpaces内核配置
         run: |
             cd kernel_workspace/common
