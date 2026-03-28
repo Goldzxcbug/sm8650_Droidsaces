@@ -3,8 +3,8 @@ name: 加速版构建 5.15.167 欧加真OKI内核
 env:
   TZ: Asia/Shanghai
   ANDROID_VERSION: 'android14'
-  KERNEL_VERSION: '6.1'
-  SUB_VERSION: '118'
+  KERNEL_VERSION: '5.15'
+  SUB_VERSION: '167'
   KERNEL_NAME: 'android13-8-o-gca13bffobf09'
   CCACHE_KEY: ccache-neov4-6.1.118
 
