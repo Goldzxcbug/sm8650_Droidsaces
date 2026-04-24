@@ -548,6 +548,7 @@ jobs:
       - name: 注入DroidSpaces内核配置
         run: |
             cd kernel_workspace/common
+            # cd kernel_workspace/common/drivers/kernelsu
             wget https://raw.githubusercontent.com/Goldzxcbug/Droidspaces_Kernel_patch/refs/heads/main/OKI/6.1/04.use_android_abi_padding_for_sysvipc_task_struct.patch
             wget https://raw.githubusercontent.com/Goldzxcbug/Droidspaces_Kernel_patch/refs/heads/main/NTsync/ntsync_base.patch
             wget https://raw.githubusercontent.com/Goldzxcbug/Droidspaces_Kernel_patch/refs/heads/main/NTsync/ntsync_compat_android14-6.1.patch
@@ -557,23 +558,13 @@ jobs:
             cd ../
             echo "CONFIG_NTSYNC=y" >> ./common/arch/arm64/configs/gki_defconfig
             # 修复 [✗] PID namespace 和 [✗] IPC namespace
-            echo "CONFIG_SYSCTL=y" >> ./common/arch/arm64/configs/gki_defconfig
             echo "CONFIG_SYSVIPC=y" >> ./common/arch/arm64/configs/gki_defconfig
             echo "CONFIG_POSIX_MQUEUE=y" >> ./common/arch/arm64/configs/gki_defconfig
-            
             echo "CONFIG_NAMESPACES=y" >> ./common/arch/arm64/configs/gki_defconfig
             echo "CONFIG_PID_NS=y" >> ./common/arch/arm64/configs/gki_defconfig
             echo "CONFIG_IPC_NS=y" >> ./common/arch/arm64/configs/gki_defconfig
-            echo "CONFIG_UTS_NS=y" >> ./common/arch/arm64/configs/gki_defconfig
-            echo "CONFIG_USER_NS=y" >> ./common/arch/arm64/configs/gki_defconfig
             # 修复 [✗] devtmpfs support
             echo "CONFIG_DEVTMPFS=y" >> ./common/arch/arm64/configs/gki_defconfig
-            echo "CONFIG_DEVTMPFS_MOUNT=y" >> ./common/arch/arm64/configs/gki_defconfig
-            # 修复 cgroup devices support
-            echo "CONFIG_CGROUPS=y" >> ./common/arch/arm64/configs/gki_defconfig
-            echo "CONFIG_CGROUP_DEVICE=y" >> ./common/arch/arm64/configs/gki_defconfig
-            echo "CONFIG_CGROUP_PIDS=y" >> ./common/arch/arm64/configs/gki_defconfig
-            echo "CONFIG_MEMCG=y" >> ./common/arch/arm64/configs/gki_defconfig
 
            
       - name: 构建内核
